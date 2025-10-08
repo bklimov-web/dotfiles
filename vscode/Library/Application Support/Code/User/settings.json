@@ -1,0 +1,748 @@
+{
+  // main
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.smoothScrolling": true,
+  "editor.minimap.enabled": false,
+  "editor.detectIndentation": true,
+  "editor.suggestSelection": "first",
+  // word wrapping
+  "editor.wordWrap": "bounded",
+  "editor.wrappingIndent": "same",
+  "editor.wordWrapColumn": 100,
+  // scroll beyond last line
+  "editor.scrollBeyondLastLine": false,
+  // edit linked tags
+  "editor.linkedEditing": true,
+  // auto close tags
+  "html.autoClosingTags": true,
+  "javascript.autoClosingTags": true,
+  "typescript.autoClosingTags": true,
+  // appearance
+  "window.density.editorTabHeight": "compact",
+  "editor.glyphMargin": false,
+  "editor.accessibilitySupport": "off",
+  "workbench.layoutControl.enabled": false,
+  "workbench.editor.editorActionsLocation": "hidden",
+  "workbench.editor.empty.hint": "hidden",
+  // font
+  "editor.fontSize": 18,
+  // "editor.lineHeight": 28.5,
+  "editor.fontWeight": "400",
+  // terminal
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "terminal.integrated.fontSize": 13,
+  // explorer
+  "explorer.compactFolders": false,
+  "explorer.confirmDragAndDrop": false,
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.startupEditor": "newUntitledFile",
+  // Emmet
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  // breadcrumbs
+  "breadcrumbs.icons": false,
+  "breadcrumbs.showKeys": false,
+  "breadcrumbs.showFiles": false,
+  "breadcrumbs.symbolPath": "off",
+  "breadcrumbs.showArrays": false,
+  "breadcrumbs.showEvents": false,
+  "breadcrumbs.showFields": false,
+  "breadcrumbs.showClasses": false,
+  "breadcrumbs.showMethods": false,
+  "breadcrumbs.showBooleans": false,
+  "breadcrumbs.showFunctions": false,
+  "breadcrumbs.showConstants": false,
+  "breadcrumbs.showEnumMembers": false,
+  "breadcrumbs.showConstructors": false,
+  // Misc
+  "workbench.statusBar.visible": true,
+  "editor.gotoLocation.multipleTypeDefinitions": "goto",
+  "files.defaultLanguage": "plaintext",
+  // "files.exclude": {
+  //   "**/node_modules": true,
+  //   "**/.git": true
+  // },
+  // "search.exclude": {
+  //   "**/node_modules": true,
+  //   "**/.git": true
+  // },
+  // "files.watcherExclude": {
+  //   "**/node_modules/**": true,
+  //   "**/.git/**": true
+  // },
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.lineNumbers": "relative",
+  "zenMode.hideLineNumbers": false,
+  "editor.stickyScroll.enabled": true,
+  "editor.suggest.insertMode": "replace",
+  "typescript.suggest.paths": false,
+  "javascript.suggest.paths": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "extensions.ignoreRecommendations": true,
+  "workbench.colorTheme": "Alt Catppuccin Macchiato",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "git.autofetch": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.mergeEditor": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": "explicit",
+    // "source.removeUnusedImports": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+  "stylelint.validate": [
+    "css",
+    "scss"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "projectManager.tags": [
+    "Personal",
+    "Work",
+    "Ebsco"
+  ],
+  "projectManager.sortList": "Recent",
+  "settingsSync.ignoredSettings": [
+    "-sonarlint.pathToNodeExecutable"
+  ],
+  "sonarlint.pathToNodeExecutable": "/Users/bogdanklimov/.nvm/versions/node/v22.14.0/bin/node",
+  "editor.cursorSurroundingLines": 8,
+  "editor.formatOnSave": true,
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "git.confirmSync": false,
+  "editor.bracketPairColorization.enabled": false,
+  "window.commandCenter": false,
+  // "workbench.activityBar.location": "top",
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "workbench.editor.enablePreview": true,
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  },
+  // VIM settings
+  // "vim.insertModeKeyBindings": [
+  //   {
+  //     "before": ["k", "j"],
+  //     "after": ["<Esc>"]
+  //   }
+  // ],
+  "vim.leader": "<Space>",
+  "vim.foldfix": true,
+  "vim.hlsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.color": "rgba(230, 97, 89, 0.7)",
+  "vim.highlightedyank.textColor": "white",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "leader",
+        "i"
+      ],
+      "commands": [
+        "extension.toggleBool"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "l",
+        "g"
+      ],
+      "commands": [
+        "lazygit.openLazygit"
+      ]
+    },
+    // NAVIGATION
+    // switch b/w buffers
+    {
+      "before": [
+        "<S-h>"
+      ],
+      "commands": [
+        ":bprevious"
+      ]
+    },
+    {
+      "before": [
+        "<S-l>"
+      ],
+      "commands": [
+        ":bnext"
+      ]
+    },
+    // split
+    {
+      "before": [
+        "leader",
+        "v"
+      ],
+      "commands": [
+        ":vsplit"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "s"
+      ],
+      "commands": [
+        ":split"
+      ]
+    },
+    // leap
+    {
+      "before": [
+        "s"
+      ],
+      "commands": [
+        "leap.findForward"
+      ]
+    },
+    {
+      "before": [
+        "S"
+      ],
+      "commands": [
+        "leap.findBackward"
+      ]
+    },
+    // panes
+    {
+      "before": [
+        "leader",
+        "h"
+      ],
+      "commands": [
+        "workbench.action.focusLeftGroup"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "j"
+      ],
+      "commands": [
+        "workbench.action.focusBelowGroup"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "k"
+      ],
+      "commands": [
+        "workbench.action.focusAboveGroup"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "l"
+      ],
+      "commands": [
+        "workbench.action.focusRightGroup"
+      ]
+    },
+    // FILE TREE
+    {
+      "before": [
+        "leader",
+        "n",
+        "e"
+      ],
+      "commands": [
+        "workbench.explorer.fileView.focus"
+      ]
+    },
+    // harpoon
+    {
+      "before": [
+        "<leader>",
+        "a"
+      ],
+      "commands": [
+        "vscode-harpoon.addEditor"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e"
+      ],
+      "commands": [
+        "vscode-harpoon.editEditors"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "p",
+        "e"
+      ],
+      "commands": [
+        "vscode-harpoon.editorQuickPick"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "1"
+      ],
+      "commands": [
+        "vscode-harpoon.gotoEditor1"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "2"
+      ],
+      "commands": [
+        "vscode-harpoon.gotoEditor2"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "3"
+      ],
+      "commands": [
+        "vscode-harpoon.gotoEditor3"
+      ]
+    },
+    // Russian remapping
+    {
+      "before": [
+        "й"
+      ],
+      "after": [
+        "q"
+      ]
+    },
+    {
+      "before": [
+        "ц"
+      ],
+      "after": [
+        "w"
+      ]
+    },
+    {
+      "before": [
+        "у"
+      ],
+      "after": [
+        "e"
+      ]
+    },
+    {
+      "before": [
+        "к"
+      ],
+      "after": [
+        "r"
+      ]
+    },
+    {
+      "before": [
+        "е"
+      ],
+      "after": [
+        "t"
+      ]
+    },
+    {
+      "before": [
+        "н"
+      ],
+      "after": [
+        "y"
+      ]
+    },
+    {
+      "before": [
+        "г"
+      ],
+      "after": [
+        "u"
+      ]
+    },
+    {
+      "before": [
+        "ш"
+      ],
+      "after": [
+        "i"
+      ]
+    },
+    {
+      "before": [
+        "щ"
+      ],
+      "after": [
+        "o"
+      ]
+    },
+    {
+      "before": [
+        "з"
+      ],
+      "after": [
+        "p"
+      ]
+    },
+    {
+      "before": [
+        "х"
+      ],
+      "after": [
+        "["
+      ]
+    },
+    {
+      "before": [
+        "ъ"
+      ],
+      "after": [
+        "]"
+      ]
+    },
+    {
+      "before": [
+        "ф"
+      ],
+      "after": [
+        "a"
+      ]
+    },
+    {
+      "before": [
+        "ы"
+      ],
+      "after": [
+        "s"
+      ]
+    },
+    {
+      "before": [
+        "в"
+      ],
+      "after": [
+        "d"
+      ]
+    },
+    {
+      "before": [
+        "а"
+      ],
+      "after": [
+        "f"
+      ]
+    },
+    {
+      "before": [
+        "п"
+      ],
+      "after": [
+        "g"
+      ]
+    },
+    {
+      "before": [
+        "р"
+      ],
+      "after": [
+        "h"
+      ]
+    },
+    {
+      "before": [
+        "о"
+      ],
+      "after": [
+        "j"
+      ]
+    },
+    {
+      "before": [
+        "л"
+      ],
+      "after": [
+        "k"
+      ]
+    },
+    {
+      "before": [
+        "д"
+      ],
+      "after": [
+        "l"
+      ]
+    },
+    {
+      "before": [
+        "ж"
+      ],
+      "after": [
+        ";"
+      ]
+    },
+    {
+      "before": [
+        "э"
+      ],
+      "after": [
+        "'"
+      ]
+    },
+    {
+      "before": [
+        "я"
+      ],
+      "after": [
+        "z"
+      ]
+    },
+    {
+      "before": [
+        "ч"
+      ],
+      "after": [
+        "x"
+      ]
+    },
+    {
+      "before": [
+        "с"
+      ],
+      "after": [
+        "c"
+      ]
+    },
+    {
+      "before": [
+        "м"
+      ],
+      "after": [
+        "v"
+      ]
+    },
+    {
+      "before": [
+        "и"
+      ],
+      "after": [
+        "b"
+      ]
+    },
+    {
+      "before": [
+        "т"
+      ],
+      "after": [
+        "n"
+      ]
+    },
+    {
+      "before": [
+        "ь"
+      ],
+      "after": [
+        "m"
+      ]
+    },
+    {
+      "before": [
+        "б"
+      ],
+      "after": [
+        ","
+      ]
+    },
+    {
+      "before": [
+        "ю"
+      ],
+      "after": [
+        "."
+      ]
+    },
+    {
+      "before": [
+        "."
+      ],
+      "after": [
+        "/"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": [
+        "g",
+        "p",
+        "d"
+      ],
+      "commands": [
+        "editor.action.peekDefinition"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "h"
+      ],
+      "commands": [
+        "editor.action.showDefinitionPreviewHover"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "i"
+      ],
+      "commands": [
+        "editor.action.goToImplementation"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "p",
+        "i"
+      ],
+      "commands": [
+        "editor.action.peekImplementation"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "q"
+      ],
+      "commands": [
+        "editor.action.quickFix"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "r"
+      ],
+      "commands": [
+        "editor.action.referenceSearch.trigger"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "t"
+      ],
+      "commands": [
+        "editor.action.goToTypeDefinition"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "p",
+        "t"
+      ],
+      "commands": [
+        "editor.action.peekTypeDefinition"
+      ]
+    }
+  ],
+  // cSpell settings
+  "cSpell.enabled": true,
+  "cSpell.language": "en,ru",
+  "cSpell.ignoreWords": [
+    "Meslo",
+    "bnext",
+    "bprevious",
+    "ebsco",
+    "esbenp",
+    "foldfix",
+    "highlightedyank",
+    "hlsearch",
+    "sonarlint",
+    "vsplit"
+  ],
+  "cSpell.userWords": [
+    "autofetch",
+    "bogdan",
+    "daisyui",
+    "downvote",
+    "Downvoted",
+    "downvotes",
+    "edgestore",
+    "Everforest",
+    "Explora",
+    "fontawesome",
+    "formik",
+    "fortawesome",
+    "lucide",
+    "nextjs",
+    "optimizely",
+    "Outcoming",
+    "rgba",
+    "stylelint",
+    "tabnine",
+    "tailwindcss",
+    "trpc",
+    "unoptimized",
+    "upvote",
+    "Upvoted",
+    "upvotes",
+    "clickstream"
+  ],
+  "supermaven.enable": {
+    "*": true
+  },
+  "sonarlint.connectedMode.connections.sonarqube": [
+    {
+      "serverUrl": "https://sonarqube.astrazeneca.com",
+      "connectionId": "https-sonarqube-astrazeneca-com-"
+    }
+  ],
+  "sonarlint.focusOnNewCode": false,
+  "sonarlint.rules": {
+    "javascript:S6848": {
+      "level": "off"
+    },
+    "javascript:S6671": {
+      "level": "off"
+    }
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+}
