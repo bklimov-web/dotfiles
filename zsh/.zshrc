@@ -107,37 +107,12 @@ HOMEBREW_BOTTLE_DOMAIN="https://brew-proxy.k.avito.ru/bottles"
 alias gpr="git pull --rebase"
 
 gcr() {
-  # Get the current git branch name
-  branch=$(git rev-parse --abbrev-ref HEAD)
-  
-  # Replace non-alphanumeric characters in the branch name with dashes
-  branch_clean=$(echo "$branch" | sed 's/[^a-zA-Z0-9]/-/g')
-  
-  # Construct the commit message
-  commit_message="$branch_clean $@"
-  
-  # Run the git commit command with the constructed message
-  git commit -m "$commit_message"
-}
-
-kbranch() {
-  # Get the current git branch name
-  current_branch=$(git rev-parse --abbrev-ref HEAD)
-
-  # Extract the number before the first dash from the branch name
-  branch_number=$(echo $current_branch | grep -o 'REAL-\d*')
-
-  # Check if the branch number is found
-  if [ -z "$branch_number" ]; then
-    echo "Unable to extract branch number from branch name: $current_branch"
+  local branch=$(git rev-parse --abbrev-ref head)
+  local ticket=$(echo "$branch" | grep -oe '[a-z]+-[0-9]+')
+  if [[ -z "$ticket" ]]; then
+    echo "❌ failed to get jira reference from branch '$branch'"
     return 1
   fi
-
-  # Replace the number in the command
-  updated_command="avito service k-branch-deploy -b $branch_number --ttl 6h --databus-route-mode k-branch -y --skip-test"
-
-  # Execute the updated command
-  echo "Executing command:"
-  echo "$updated_command"
-  eval "$updated_command"
+  git commit -m "$ticket $*"
 }
+
