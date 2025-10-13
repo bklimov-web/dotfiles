@@ -17,8 +17,6 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search)
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -59,8 +57,6 @@ _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
 
-source ~/fzf-git.sh/fzf-git.sh
-
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
@@ -96,7 +92,7 @@ eval "$(zoxide init zsh)"
 
 alias cd="z"
 
-alias vim=nvim
+alias n=nvim
 
 HOMEBREW_BREW_GIT_REMOTE="http://stash.msk.avito.ru/scm/mrr/brew.git"
 HOMEBREW_CORE_GIT_REMOTE="http://stash.msk.avito.ru/scm/mrr/brew-core.git"
@@ -116,3 +112,14 @@ gcr() {
   git commit -m "$ticket $*"
 }
 
+# ---- yazi ----
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+# --- starship ---
+eval "$(starship init zsh)"
