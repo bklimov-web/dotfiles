@@ -726,9 +726,6 @@
     "upvotes",
     "clickstream"
   ],
-  "supermaven.enable": {
-    "*": true
-  },
   "sonarlint.connectedMode.connections.sonarqube": [
     {
       "serverUrl": "https://sonarqube.astrazeneca.com",
@@ -745,4 +742,10 @@
     }
   },
   "github.copilot.nextEditSuggestions.enabled": true,
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3.13",
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "claudeCode.preferredLocation": "sidebar",
+  "chat.disableAIFeatures": true,
 }

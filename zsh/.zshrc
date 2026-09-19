@@ -20,9 +20,8 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# ---- Node (fnm) ----
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 # ---- FZF ----
 
@@ -75,6 +74,11 @@ _fzf_comprun() {
   esac
 }
 
+# ----- Python -----
+
+alias python="python3.11"
+
+
 # ----- Bat (better cat) -----
 
 export BAT_THEME=tokyonight_night
@@ -83,20 +87,20 @@ export BAT_THEME=tokyonight_night
 
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user"
 
-# thefuck alias
-eval $(thefuck --alias)
-eval $(thefuck --alias fk)
+# thefuck: alias генерируется один раз и кешируется
+_fuck_cache="${XDG_CACHE_HOME:-$HOME/.cache}/thefuck-alias.zsh"
+if [[ ! -s $_fuck_cache || $(command -v thefuck) -nt $_fuck_cache ]]; then
+  thefuck --alias fk > $_fuck_cache
+fi
+source $_fuck_cache
+unset _fuck_cache
+alias fuck=fk
 
-# ---- Zoxide (better cd) ----
-eval "$(zoxide init zsh)"
-
-alias cd="z"
+# ---- Docker ----
+alias d="docker"
 
 alias n=nvim
 
-HOMEBREW_BREW_GIT_REMOTE="http://stash.msk.avito.ru/scm/mrr/brew.git"
-HOMEBREW_CORE_GIT_REMOTE="http://stash.msk.avito.ru/scm/mrr/brew-core.git"
-HOMEBREW_BOTTLE_DOMAIN="https://brew-proxy.k.avito.ru/bottles"
 
 # --- git avito REAL ---
 
@@ -121,5 +125,20 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-# --- starship ---
-eval "$(starship init zsh)"
+. "$HOME/.local/bin/env"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# local sync
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# ---- Zoxide (better cd) ---- должен быть в самом конце
+eval "$(zoxide init zsh --cmd cd)"

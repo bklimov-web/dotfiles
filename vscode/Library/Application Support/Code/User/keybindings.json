@@ -93,5 +93,13 @@
     "key": "ctrl+j",
     "command": "workbench.action.terminal.focusNext",
     "when": "terminalFocus"
-  }
+},
+{
+    "key": "shift+enter",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+        "text": "\u001b\r"
+    },
+    "when": "terminalFocus"
+}
 ]
