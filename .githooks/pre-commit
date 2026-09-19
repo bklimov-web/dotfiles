@@ -1,0 +1,10 @@
+#!/bin/bash
+# Блокирует коммит, если в staged-изменениях найден секрет (gitleaks).
+if ! command -v gitleaks &>/dev/null; then
+  echo "⚠️  gitleaks не установлен (brew install gitleaks) — проверка секретов пропущена"
+  exit 0
+fi
+gitleaks git --staged --no-banner --redact -v || {
+  echo "❌ gitleaks нашёл возможный секрет. Коммит отменён."
+  exit 1
+}

@@ -6,6 +6,9 @@ DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # Профиль машины: ./install.sh personal|work (или MACHINE_PROFILE в окружении)
 PROFILE="${1:-${MACHINE_PROFILE:-}}"
 
+# git-хуки репозитория (проверка секретов перед коммитом)
+git -C "$DOTFILES" config core.hooksPath .githooks
+
 echo "🚀 Starting environment setup..."
 
 # --------------------------------------------------------------------
@@ -47,7 +50,7 @@ cd -
 # ⚙️ 3. CLI утилиты
 # --------------------------------------------------------------------
 echo "⚙️ Installing CLI utilities..."
-brew install fzf thefuck zoxide fd bat eza git-lfs fnm
+brew install fzf thefuck zoxide fd bat eza git-lfs fnm gitleaks
 
 # Настройка fzf (key bindings и completion)
 if [ -f "$(brew --prefix)/opt/fzf/install" ]; then

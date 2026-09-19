@@ -90,3 +90,28 @@ echo 'publisher.name' >> vscode/extensions.work.txt   # или extensions.txt
 В `~/.zshrc.local` задаётся `export MACHINE_PROFILE=personal`. Если он равен
 `personal`, `.zshrc` подключает `zsh/.config/zsh/personal.zsh` (сейчас там bun).
 Новый слой (например, `work`) добавляется так же: файл рядом + строка в `.zshrc`.
+
+## Секреты и личные значения
+
+Правило: **в репозитории только код, значения приходят снаружи**.
+
+| Что | Где |
+|---|---|
+| Не секрет (регион, имя профиля) | значение по умолчанию в коде, переопределяется переменной |
+| Приватное (instance-id, хосты) | `~/.zshrc.local`, вне репозитория |
+| Секреты (токены, ключи) | Keychain (`security find-generic-password`) или 1Password (`op read`), читать **в момент вызова**, не при старте шелла |
+
+Скрипты и функции для профиля `personal` лежат в `zsh/.config/zsh/personal.d/*.zsh`
+и подключаются автоматически; новый файл подхватывается без правок `.zshrc`.
+Переменные для них (например `VALHEIM_INSTANCE_ID`) задаются в `~/.zshrc.local`.
+
+### Защита от случайной утечки
+
+`gitleaks` проверяет staged-изменения перед коммитом (`.githooks/pre-commit`).
+После клонирования включи хуки один раз:
+
+```bash
+brew install gitleaks
+git config core.hooksPath .githooks
+gitleaks git --redact    # проверить всю историю
+```
