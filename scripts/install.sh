@@ -3,6 +3,9 @@ set -e
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
+# Профиль машины: ./install.sh personal|work (или MACHINE_PROFILE в окружении)
+PROFILE="${1:-${MACHINE_PROFILE:-}}"
+
 echo "🚀 Starting environment setup..."
 
 # --------------------------------------------------------------------
@@ -127,7 +130,21 @@ stow --restow yazi
 echo "✅ Yazi installed and configured!"
 
 # --------------------------------------------------------------------
-# 🧹 8. Финал
+# 📦 8. Brewfile: общий слой + слой профиля
+# --------------------------------------------------------------------
+echo "📦 Installing Brewfile layers (profile: ${PROFILE:-none})..."
+brew bundle --file="$DOTFILES/brew/Brewfile"
+if [ -n "$PROFILE" ] && [ -f "$DOTFILES/brew/Brewfile.$PROFILE" ]; then
+  brew bundle --file="$DOTFILES/brew/Brewfile.$PROFILE"
+fi
+
+# Запомнить профиль для zsh (файл вне репозитория)
+if [ -n "$PROFILE" ] && ! grep -q '^export MACHINE_PROFILE=' ~/.zshrc.local 2>/dev/null; then
+  echo "export MACHINE_PROFILE=$PROFILE" >> ~/.zshrc.local
+fi
+
+# --------------------------------------------------------------------
+# 🧹 9. Финал
 # --------------------------------------------------------------------
 echo ""
 echo "✅ Installation complete!"

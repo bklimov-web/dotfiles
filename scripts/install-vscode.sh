@@ -27,22 +27,31 @@ done
 echo "🔗 Linking VS Code config files..."
 (cd "$DOTFILES" && stow --restow vscode)
 
-# 3️⃣ Установка расширений
-if command -v code &>/dev/null && [ -f "$DOTFILES/vscode/extensions.txt" ]; then
-  echo "📦 Installing VS Code extensions..."
+# 3️⃣ Установка расширений: общий слой + слой профиля
+PROFILE="${1:-${MACHINE_PROFILE:-}}"
+EXT_FILES=("$DOTFILES/vscode/extensions.txt")
+if [ -n "$PROFILE" ]; then
+  EXT_FILES+=("$DOTFILES/vscode/extensions.$PROFILE.txt")
+fi
+
+if command -v code &>/dev/null; then
+  echo "📦 Installing VS Code extensions (profile: ${PROFILE:-none})..."
   installed=$(code --list-extensions)
-  while IFS= read -r ext; do
-    if echo "$installed" | grep -q "$ext"; then
-      echo "✅ $ext already installed"
-    else
-      echo "⬇️  Installing $ext..."
-      code --install-extension "$ext" --force || echo "⚠️  Failed to install $ext"
-      sleep 0.3
-    fi
-  done < "$DOTFILES/vscode/extensions.txt"
+  for file in "${EXT_FILES[@]}"; do
+    [ -f "$file" ] || { echo "⚠️  $file not found, skipping"; continue; }
+    while IFS= read -r ext; do
+      [[ -z "$ext" || "$ext" == \#* ]] && continue
+      if echo "$installed" | grep -qix "$ext"; then
+        echo "✅ $ext already installed"
+      else
+        echo "⬇️  Installing $ext..."
+        code --install-extension "$ext" --force || echo "⚠️  Failed to install $ext"
+        sleep 0.3
+      fi
+    done < "$file"
+  done
 else
-  echo "⚠️  VS Code CLI not found or extensions.txt missing"
+  echo "⚠️  VS Code CLI (code) not found"
 fi
 
 echo "✅ VS Code setup complete!"
-
