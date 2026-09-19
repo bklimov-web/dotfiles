@@ -1,1 +1,3 @@
 # Только для рабочих машин
+github.copilot
+github.copilot-chat

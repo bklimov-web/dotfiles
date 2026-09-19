@@ -16,8 +16,7 @@
   "editor.linkedEditing": true,
   // auto close tags
   "html.autoClosingTags": true,
-  "javascript.autoClosingTags": true,
-  "typescript.autoClosingTags": true,
+  "js/ts.autoClosingTags.enabled": true,
   // appearance
   "window.density.editorTabHeight": "compact",
   "editor.glyphMargin": false,
@@ -80,9 +79,8 @@
   "zenMode.hideLineNumbers": false,
   "editor.stickyScroll.enabled": true,
   "editor.suggest.insertMode": "replace",
-  "typescript.suggest.paths": false,
-  "javascript.suggest.paths": false,
-  "typescript.updateImportsOnFileMove.enabled": "always",
+  "js/ts.suggest.paths": false,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
   "extensions.ignoreRecommendations": true,
   "workbench.colorTheme": "Alt Catppuccin Macchiato",
   "[javascript]": {
@@ -105,7 +103,6 @@
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "javascript.updateImportsOnFileMove.enabled": "always",
   "[python]": {
     "editor.formatOnType": true
   },
@@ -131,10 +128,6 @@
     "Ebsco"
   ],
   "projectManager.sortList": "Recent",
-  "settingsSync.ignoredSettings": [
-    "-sonarlint.pathToNodeExecutable"
-  ],
-  "sonarlint.pathToNodeExecutable": "/Users/bogdanklimov/.nvm/versions/node/v22.14.0/bin/node",
   "editor.cursorSurroundingLines": 8,
   "editor.formatOnSave": true,
   "css.lint.unknownAtRules": "ignore",
@@ -145,9 +138,6 @@
   // "workbench.activityBar.location": "top",
   "editor.gotoLocation.multipleDefinitions": "goto",
   "workbench.editor.enablePreview": true,
-  "[svg]": {
-    "editor.defaultFormatter": "jock.svg"
-  },
   // VIM settings
   // "vim.insertModeKeyBindings": [
   //   {
@@ -726,26 +716,10 @@
     "upvotes",
     "clickstream"
   ],
-  "sonarlint.connectedMode.connections.sonarqube": [
-    {
-      "serverUrl": "https://sonarqube.astrazeneca.com",
-      "connectionId": "https-sonarqube-astrazeneca-com-"
-    }
-  ],
-  "sonarlint.focusOnNewCode": false,
-  "sonarlint.rules": {
-    "javascript:S6848": {
-      "level": "off"
-    },
-    "javascript:S6671": {
-      "level": "off"
-    }
-  },
   "github.copilot.nextEditSuggestions.enabled": true,
   "python.defaultInterpreterPath": "/opt/homebrew/bin/python3.13",
   "[go]": {
     "editor.defaultFormatter": "golang.go"
   },
   "claudeCode.preferredLocation": "sidebar",
-  "chat.disableAIFeatures": true,
 }
