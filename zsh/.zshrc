@@ -87,13 +87,8 @@ export BAT_THEME=tokyonight_night
 
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user"
 
-# thefuck: alias генерируется один раз и кешируется
-_fuck_cache="${XDG_CACHE_HOME:-$HOME/.cache}/thefuck-alias.zsh"
-if [[ ! -s $_fuck_cache || $(command -v thefuck) -nt $_fuck_cache ]]; then
-  thefuck --alias fk > $_fuck_cache
-fi
-source $_fuck_cache
-unset _fuck_cache
+# thefuck: подгружается при первом вызове
+fk() { unfunction fk; eval "$(thefuck --alias fk)"; fk "$@"; }
 alias fuck=fk
 
 # ---- Docker ----
@@ -102,7 +97,7 @@ alias d="docker"
 alias n=nvim
 
 
-# --- git avito REAL ---
+# --- git commit helper for branches ---
 
 alias gpr="git pull --rebase"
 
@@ -130,15 +125,11 @@ function y() {
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # local sync
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# профильные слои (MACHINE_PROFILE задаётся в ~/.zshrc.local)
+[[ $MACHINE_PROFILE == personal && -f ~/.config/zsh/personal.zsh ]] && source ~/.config/zsh/personal.zsh
 
 # ---- Zoxide (better cd) ---- должен быть в самом конце
 eval "$(zoxide init zsh --cmd cd)"

@@ -1,0 +1,2 @@
+# Только для личных машин: brew bundle --file=brew/Brewfile.personal
+go "github.com/bootdotdev/bootdev"

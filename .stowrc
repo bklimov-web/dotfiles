@@ -1,4 +1,3 @@
---ignore=.stowrc
---ignore=DS_Store
---ignore=setup.sh
---ignore=setup-zsh.sh
+--target=$HOME
+--ignore=extensions\.txt
+--ignore=\.DS_Store

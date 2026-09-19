@@ -1,0 +1,91 @@
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Modern, maintained replacement for ls
+brew "eza"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg@7", link: true
+# Fast and simple Node.js version manager
+brew "fnm"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GitHub command-line tool
+brew "gh"
+# Git extension for versioning large files
+brew "git-lfs"
+# Deliver Go binaries as fast and easily as possible
+brew "goreleaser"
+# Tools and libraries to manipulate images in select formats
+brew "imagemagick"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
+# Object-relational database system
+brew "postgresql@15", restart_service: :changed
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
+# SVG rendering tool and library
+brew "resvg"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# 7-Zip is a file archiver with a high compression ratio
+brew "sevenzip"
+# SOund eXchange: universal sound sample translator
+brew "sox"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
+# Programmatically correct mistyped console commands
+brew "thefuck"
+# Blazing fast terminal file manager written in Rust, based on async I/O
+brew "yazi"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
+cask "font-meslo-lg-nerd-font"
+cask "font-symbols-only-nerd-font"
+# Plugin for AWS CLI to start and end sessions that connect to managed instances
+cask "session-manager-plugin"
+vscode "aaron-bond.better-comments"
+vscode "anthropic.claude-code"
+vscode "cardinal90.multi-cursor-case-preserve"
+vscode "chakrounanas.turbo-console-log"
+vscode "christian-kohler.path-intellisense"
+vscode "clinyong.vscode-css-modules"
+vscode "cweijan.vscode-office"
+vscode "dbaeumer.vscode-eslint"
+vscode "dooez.alt-catppuccin-vsc"
+vscode "eamodio.gitlens"
+vscode "esbenp.prettier-vscode"
+vscode "fractalbrew.backticks"
+vscode "golang.go"
+vscode "hossaini.bootstrap-intellisense"
+vscode "inferrinizzard.prettier-sql-vscode"
+vscode "kevinrose.vsc-python-indent"
+vscode "ms-azuretools.vscode-containers"
+vscode "ms-azuretools.vscode-docker"
+vscode "ms-python.debugpy"
+vscode "ms-python.python"
+vscode "ms-python.vscode-pylance"
+vscode "ms-python.vscode-python-envs"
+vscode "murloccra4ler.leap"
+vscode "pkief.material-icon-theme"
+vscode "repreng.csv"
+vscode "silesky.toggle-boolean"
+vscode "sonarsource.sonarlint-vscode"
+vscode "stylelint.vscode-stylelint"
+vscode "tobias-z.vscode-harpoon"
+vscode "vscodevim.vim"
+vscode "vue.volar"
+vscode "waderyan.gitblame"
+vscode "wix.vscode-import-cost"
+vscode "zignd.html-css-class-completion"
+go "github.com/pressly/goose/v3/cmd/goose"
+go "golang.org/x/tools/gopls"
+go "github.com/sqlc-dev/sqlc/cmd/sqlc"

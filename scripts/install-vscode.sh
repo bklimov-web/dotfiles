@@ -1,3 +1,7 @@
+#!/bin/bash
+set -e
+
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 echo "🧩 Setting up VS Code configuration..."
 
 VSCODE_USER_DIR="$HOME/Library/Application Support/Code/User"
@@ -21,10 +25,10 @@ done
 
 # 2️⃣ Создание симлинков
 echo "🔗 Linking VS Code config files..."
-stow --restow vscode
+(cd "$DOTFILES" && stow --restow vscode)
 
 # 3️⃣ Установка расширений
-if command -v code &>/dev/null && [ -f ~/dotfiles/vscode/extensions.txt ]; then
+if command -v code &>/dev/null && [ -f "$DOTFILES/vscode/extensions.txt" ]; then
   echo "📦 Installing VS Code extensions..."
   installed=$(code --list-extensions)
   while IFS= read -r ext; do
@@ -35,7 +39,7 @@ if command -v code &>/dev/null && [ -f ~/dotfiles/vscode/extensions.txt ]; then
       code --install-extension "$ext" --force || echo "⚠️  Failed to install $ext"
       sleep 0.3
     fi
-  done < ~/dotfiles/vscode/extensions.txt
+  done < "$DOTFILES/vscode/extensions.txt"
 else
   echo "⚠️  VS Code CLI not found or extensions.txt missing"
 fi

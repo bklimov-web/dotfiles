@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
 echo "🚀 Starting environment setup..."
 
 # --------------------------------------------------------------------
@@ -42,7 +44,7 @@ cd -
 # ⚙️ 3. CLI утилиты
 # --------------------------------------------------------------------
 echo "⚙️ Installing CLI utilities..."
-brew install fzf thefuck zoxide fd bat eza git-lfs
+brew install fzf thefuck zoxide fd bat eza git-lfs fnm
 
 # Настройка fzf (key bindings и completion)
 if [ -f "$(brew --prefix)/opt/fzf/install" ]; then
@@ -98,7 +100,7 @@ for file in ~/.zshrc ~/.p10k.zsh; do
   fi
 done
 
-cd ~/dotfiles
+cd "$DOTFILES"
 stow --restow zsh
 
 # --------------------------------------------------------------------
@@ -114,10 +116,12 @@ fi
 # --------------------------------------------------------------------
 echo "🗂️ Installing Yazi and dependencies..."
 
-brew install yazi ffmpeg sevenzip jq poppler fd ripgrep fzf zoxide resvg imagemagick font-symbols-only-nerd-font
+brew install yazi ffmpeg@7 sevenzip jq poppler fd ripgrep fzf zoxide resvg imagemagick font-symbols-only-nerd-font
+# ffmpeg@7 — keg-only, без линка `ffmpeg` не попадёт в PATH
+brew link --overwrite --force ffmpeg@7
 
 # Создание симлинков
-cd ~/dotfiles
+cd "$DOTFILES"
 stow --restow yazi
 
 echo "✅ Yazi installed and configured!"
