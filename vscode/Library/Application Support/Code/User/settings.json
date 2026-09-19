@@ -29,7 +29,7 @@
   // "editor.lineHeight": 28.5,
   "editor.fontWeight": "400",
   // terminal
-  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "terminal.integrated.fontFamily": "MesloLGS Nerd Font",
   "terminal.integrated.fontSize": 13,
   // explorer
   "explorer.compactFolders": false,

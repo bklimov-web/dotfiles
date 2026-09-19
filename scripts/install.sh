@@ -31,7 +31,7 @@ MESLO_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Mesl
 mkdir -p "$FONT_DIR"
 cd "$FONT_DIR"
 
-if [ ! -f "$FONT_DIR/MesloLGS NF Regular.ttf" ]; then
+if [ ! -f "$FONT_DIR/MesloLGSNerdFont-Regular.ttf" ]; then
   echo "⬇️  Downloading MesloLGS Nerd Font..."
   curl -fLo Meslo.zip "$MESLO_URL"
   unzip -o Meslo.zip >/dev/null
