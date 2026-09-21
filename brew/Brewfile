@@ -50,6 +50,8 @@ brew "thefuck"
 brew "yazi"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# Keyboard customizer
+cask "karabiner-elements"
 cask "font-meslo-lg-nerd-font"
 cask "font-symbols-only-nerd-font"
 # Plugin for AWS CLI to start and end sessions that connect to managed instances

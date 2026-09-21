@@ -105,8 +105,8 @@ alias n=nvim
 alias gpr="git pull --rebase"
 
 gcr() {
-  local branch=$(git rev-parse --abbrev-ref head)
-  local ticket=$(echo "$branch" | grep -oe '[a-z]+-[0-9]+')
+  local branch=$(git rev-parse --abbrev-ref HEAD)
+  local ticket=$(echo "$branch" | grep -oE '[A-Za-z]+-[0-9]+' | head -1 | tr a-z A-Z)
   if [[ -z "$ticket" ]]; then
     echo "❌ failed to get jira reference from branch '$branch'"
     return 1
