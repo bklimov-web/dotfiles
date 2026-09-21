@@ -132,6 +132,9 @@ stow --restow yazi
 
 echo "✅ Yazi installed and configured!"
 
+# Остальные пакеты: nvim, karabiner, ccstatusline (сами программы ставит Brewfile)
+stow --restow nvim karabiner ccstatusline
+
 # --------------------------------------------------------------------
 # 📦 8. Brewfile: общий слой + слой профиля
 # --------------------------------------------------------------------

@@ -8,6 +8,9 @@
 | `zsh`   | `.zshrc`, `.p10k.zsh`, `.config/zsh/`   | `~/.zshrc`, `~/.p10k.zsh`, `~/.config/zsh/`      |
 | `yazi`  | `.config/yazi/*.toml`                   | `~/.config/yazi/`                                |
 | `vscode`| `Library/Application Support/Code/User` | `~/Library/Application Support/Code/User/`       |
+| `nvim`  | `.config/nvim` (LazyVim)                | `~/.config/nvim`                                 |
+| `karabiner` | `.config/karabiner/karabiner.json`  | `~/.config/karabiner/karabiner.json`             |
+| `ccstatusline` | `.config/ccstatusline/settings.json` | `~/.config/ccstatusline/settings.json`       |
 
 `vscode/extensions*.txt` — списки расширений, они не линкуются (см. `.stowrc`).
 
@@ -19,7 +22,7 @@ git clone <repo> ~/dotfiles
 ~/dotfiles/scripts/install-vscode.sh personal
 ```
 
-`install.sh`: brew, oh-my-zsh, p10k, плагины, yazi, stow (zsh + yazi), затем
+`install.sh`: brew, oh-my-zsh, p10k, плагины, yazi, stow (zsh, yazi, nvim, karabiner, ccstatusline), затем
 `brew bundle` для `brew/Brewfile` и `brew/Brewfile.<профиль>`. Профиль запоминается в
 `~/.zshrc.local` как `MACHINE_PROFILE`. `install-vscode.sh`: stow vscode и расширения
 из `extensions.txt` + `extensions.<профиль>.txt`.
@@ -29,7 +32,7 @@ git clone <repo> ~/dotfiles
 `.stowrc` уже задаёт `--target=$HOME`, поэтому из папки репо:
 
 ```bash
-stow zsh yazi vscode        # создать
+stow zsh yazi vscode nvim karabiner ccstatusline   # создать
 stow -R zsh                 # пересоздать один пакет
 stow -D yazi                # снять симлинки
 stow -n -v zsh              # пробный прогон, ничего не меняет

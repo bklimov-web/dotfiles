@@ -18,6 +18,8 @@ brew "fzf"
 brew "gh"
 # Git extension for versioning large files
 brew "git-lfs"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
 # Deliver Go binaries as fast and easily as possible
 brew "goreleaser"
 # Tools and libraries to manipulate images in select formats

@@ -23,6 +23,9 @@ source $ZSH/oh-my-zsh.sh
 # ---- Node (fnm) ----
 eval "$(fnm env --use-on-cd --shell zsh)"
 
+# ---- Go ----
+export PATH="$HOME/go/bin:$PATH"
+
 # ---- FZF ----
 
 # --- setup fzf theme ---
