@@ -1,7 +1,6 @@
 aaron-bond.better-comments
 anthropic.claude-code
 cardinal90.multi-cursor-case-preserve
-chakrounanas.turbo-console-log
 christian-kohler.path-intellisense
 clinyong.vscode-css-modules
 cweijan.vscode-office

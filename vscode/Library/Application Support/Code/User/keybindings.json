@@ -39,8 +39,15 @@
   },
   // EXTENSIONS
   {
+    // console.log переменной под курсором на следующей строке.
+    // Если строка заканчивается на [ { или ( — лог ставится после парной ] } или ).
+    // Слово идёт через именной регистр "a: без выделения и без системного буфера.
     "key": "cmd+i",
-    "command": "turboConsoleLog.displayLogMessage"
+    "command": "vim.remap",
+    "when": "editorTextFocus && vim.mode == 'Normal'",
+    "args": {
+      "after": ["\"", "a", "y", "i", "w", "$", "%", "o", "c", "o", "n", "s", "o", "l", "e", ".", "l", "o", "g", "(", "'", "<C-r>", "a", ":", "'", ",", "<space>", "<C-r>", "a", ")", ";", "<Esc>"]
+    }
   },
   // CODE NAVIGATION
   {
@@ -93,13 +100,13 @@
     "key": "ctrl+j",
     "command": "workbench.action.terminal.focusNext",
     "when": "terminalFocus"
-},
-{
+  },
+  {
     "key": "shift+enter",
     "command": "workbench.action.terminal.sendSequence",
     "args": {
-        "text": "\u001b\r"
+      "text": "\u001b\r"
     },
     "when": "terminalFocus"
-}
+  }
 ]

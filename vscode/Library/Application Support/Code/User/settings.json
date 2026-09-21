@@ -722,4 +722,5 @@
     "editor.defaultFormatter": "golang.go"
   },
   "claudeCode.preferredLocation": "sidebar",
+  "chat.titleBar.openInAgentsWindow.enabled": false,
 }
