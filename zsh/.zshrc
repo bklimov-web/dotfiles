@@ -135,4 +135,6 @@ function y() {
 [[ $MACHINE_PROFILE == personal && -f ~/.config/zsh/personal.zsh ]] && source ~/.config/zsh/personal.zsh
 
 # ---- Zoxide (better cd) ---- должен быть в самом конце
+# в неинтерактивном shell Claude Code zoxide ложно жалуется на конфигурацию
+[[ -n $CLAUDECODE ]] && export _ZO_DOCTOR=0
 eval "$(zoxide init zsh --cmd cd)"

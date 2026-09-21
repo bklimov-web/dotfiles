@@ -1,0 +1,8 @@
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+
+# name/email живут вне репозитория (репо публичный)
+[include]
+	path = ~/.gitconfig.local

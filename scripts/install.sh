@@ -132,8 +132,13 @@ stow --restow yazi
 
 echo "✅ Yazi installed and configured!"
 
-# Остальные пакеты: nvim, karabiner, ccstatusline (сами программы ставит Brewfile)
-stow --restow nvim karabiner ccstatusline
+# Остальные пакеты: nvim, karabiner, ccstatusline, git (сами программы ставит Brewfile)
+stow --restow nvim karabiner ccstatusline git
+
+# name/email для git лежат вне репозитория
+if [ ! -f ~/.gitconfig.local ]; then
+  echo "⚠️  Создай ~/.gitconfig.local с [user] name и email (см. README)"
+fi
 
 # --------------------------------------------------------------------
 # 📦 8. Brewfile: общий слой + слой профиля

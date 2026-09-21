@@ -11,6 +11,7 @@
 | `nvim`  | `.config/nvim` (LazyVim)                | `~/.config/nvim`                                 |
 | `karabiner` | `.config/karabiner/karabiner.json`  | `~/.config/karabiner/karabiner.json`             |
 | `ccstatusline` | `.config/ccstatusline/settings.json` | `~/.config/ccstatusline/settings.json`       |
+| `git`   | `.gitconfig`                            | `~/.gitconfig`                                   |
 
 `vscode/extensions*.txt` — списки расширений, они не линкуются (см. `.stowrc`).
 
@@ -22,7 +23,7 @@ git clone <repo> ~/dotfiles
 ~/dotfiles/scripts/install-vscode.sh personal
 ```
 
-`install.sh`: brew, oh-my-zsh, p10k, плагины, yazi, stow (zsh, yazi, nvim, karabiner, ccstatusline), затем
+`install.sh`: brew, oh-my-zsh, p10k, плагины, yazi, stow (zsh, yazi, nvim, karabiner, ccstatusline, git), затем
 `brew bundle` для `brew/Brewfile` и `brew/Brewfile.<профиль>`. Профиль запоминается в
 `~/.zshrc.local` как `MACHINE_PROFILE`. `install-vscode.sh`: stow vscode и расширения
 из `extensions.txt` + `extensions.<профиль>.txt`.
@@ -32,10 +33,20 @@ git clone <repo> ~/dotfiles
 `.stowrc` уже задаёт `--target=$HOME`, поэтому из папки репо:
 
 ```bash
-stow zsh yazi vscode nvim karabiner ccstatusline   # создать
+stow zsh yazi vscode nvim karabiner ccstatusline git   # создать
 stow -R zsh                 # пересоздать один пакет
 stow -D yazi                # снять симлинки
 stow -n -v zsh              # пробный прогон, ничего не меняет
+```
+
+## Git: имя и email
+
+Общий `~/.gitconfig` из репо подключает `~/.gitconfig.local` (вне репозитория) — там личные данные:
+
+```ini
+[user]
+	name = Your Name
+	email = you@example.com
 ```
 
 ## Слои: общий и по профилям

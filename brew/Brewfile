@@ -18,6 +18,8 @@ brew "fzf"
 brew "gh"
 # Git extension for versioning large files
 brew "git-lfs"
+# Audit git repos for secrets (used by .githooks/pre-commit)
+brew "gitleaks"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Deliver Go binaries as fast and easily as possible
