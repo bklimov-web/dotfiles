@@ -21,44 +21,26 @@ else
   echo "✅ Homebrew already installed"
 fi
 
+# сразу после установки brew ещё не в PATH (Apple Silicon: /opt/homebrew, Intel: /usr/local)
+for _brew in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+  [ -x "$_brew" ] && eval "$("$_brew" shellenv)" && break
+done
+unset _brew
+
 brew update
 
 # --------------------------------------------------------------------
-# 🔤 2. Шрифт для Powerlevel10k
+# 📦 2. Brewfile: общий слой + слой профиля (CLI, шрифты, зависимости yazi и т.д.)
 # --------------------------------------------------------------------
-echo "🔤 Installing Meslo Nerd Font..."
-
-FONT_DIR="$HOME/Library/Fonts"
-MESLO_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.zip"
-
-mkdir -p "$FONT_DIR"
-cd "$FONT_DIR"
-
-if [ ! -f "$FONT_DIR/MesloLGSNerdFont-Regular.ttf" ]; then
-  echo "⬇️  Downloading MesloLGS Nerd Font..."
-  curl -fLo Meslo.zip "$MESLO_URL"
-  unzip -o Meslo.zip >/dev/null
-  rm Meslo.zip
-  echo "✅ Meslo Nerd Font installed in $FONT_DIR"
-else
-  echo "✅ Meslo Nerd Font already installed"
-fi
-
-cd -
-
-# --------------------------------------------------------------------
-# ⚙️ 3. CLI утилиты
-# --------------------------------------------------------------------
-echo "⚙️ Installing CLI utilities..."
-brew install fzf thefuck zoxide fd bat eza git-lfs fnm gitleaks
-
-# Настройка fzf (key bindings и completion)
-if [ -f "$(brew --prefix)/opt/fzf/install" ]; then
-  yes | "$(brew --prefix)/opt/fzf/install" --no-update-rc --key-bindings --completion
+echo "📦 Installing Brewfile layers (profile: ${PROFILE:-none})..."
+# сбой одного пакета (например, приложение уже стоит вручную) не должен ронять весь скрипт
+brew bundle --file="$DOTFILES/brew/Brewfile" || echo "⚠️  brew bundle (общий слой) завершился с ошибками — проверь вывод выше"
+if [ -n "$PROFILE" ] && [ -f "$DOTFILES/brew/Brewfile.$PROFILE" ]; then
+  brew bundle --file="$DOTFILES/brew/Brewfile.$PROFILE" || echo "⚠️  brew bundle ($PROFILE) завершился с ошибками — проверь вывод выше"
 fi
 
 # --------------------------------------------------------------------
-# 🐚 4. Oh My Zsh + Powerlevel10k + плагины
+# 🐚 3. Oh My Zsh + Powerlevel10k + плагины
 # --------------------------------------------------------------------
 echo "🐚 Installing Oh My Zsh..."
 
@@ -92,7 +74,7 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
 fi
 
 # --------------------------------------------------------------------
-# 🔗 5. Симлинки через stow
+# 🔗 4. Симлинки через stow
 # --------------------------------------------------------------------
 echo "🔗 Linking dotfiles via stow..."
 
@@ -109,31 +91,8 @@ done
 cd "$DOTFILES"
 stow --restow zsh
 
-# --------------------------------------------------------------------
-# 🧠 6. Сделать zsh оболочкой по умолчанию
-# --------------------------------------------------------------------
-if [[ "$SHELL" != "$(which zsh)" ]]; then
-  echo "🧠 Setting zsh as default shell..."
-  chsh -s "$(which zsh)"
-fi
-
-# --------------------------------------------------------------------
-# 🗂️ 7. Yazi file manager
-# --------------------------------------------------------------------
-echo "🗂️ Installing Yazi and dependencies..."
-
-brew install yazi ffmpeg@7 sevenzip jq poppler fd ripgrep fzf zoxide resvg imagemagick font-symbols-only-nerd-font
-# ffmpeg@7 — keg-only, без линка `ffmpeg` не попадёт в PATH
-brew link --overwrite --force ffmpeg@7
-
-# Создание симлинков
-cd "$DOTFILES"
-stow --restow yazi
-
-echo "✅ Yazi installed and configured!"
-
-# Остальные пакеты: nvim, karabiner, ccstatusline, git (сами программы ставит Brewfile)
-stow --restow nvim karabiner ccstatusline git
+# Остальные пакеты (сами программы уже поставлены Brewfile)
+stow --restow yazi nvim karabiner ccstatusline git
 
 # name/email для git лежат вне репозитория
 if [ ! -f ~/.gitconfig.local ]; then
@@ -141,12 +100,11 @@ if [ ! -f ~/.gitconfig.local ]; then
 fi
 
 # --------------------------------------------------------------------
-# 📦 8. Brewfile: общий слой + слой профиля
+# 🧠 5. Сделать zsh оболочкой по умолчанию
 # --------------------------------------------------------------------
-echo "📦 Installing Brewfile layers (profile: ${PROFILE:-none})..."
-brew bundle --file="$DOTFILES/brew/Brewfile"
-if [ -n "$PROFILE" ] && [ -f "$DOTFILES/brew/Brewfile.$PROFILE" ]; then
-  brew bundle --file="$DOTFILES/brew/Brewfile.$PROFILE"
+if [[ "$SHELL" != "$(which zsh)" ]]; then
+  echo "🧠 Setting zsh as default shell..."
+  chsh -s "$(which zsh)"
 fi
 
 # Запомнить профиль для zsh (файл вне репозитория)
@@ -155,7 +113,7 @@ if [ -n "$PROFILE" ] && ! grep -q '^export MACHINE_PROFILE=' ~/.zshrc.local 2>/d
 fi
 
 # --------------------------------------------------------------------
-# 🧹 9. Финал
+# 🧹 6. Финал
 # --------------------------------------------------------------------
 echo ""
 echo "✅ Installation complete!"

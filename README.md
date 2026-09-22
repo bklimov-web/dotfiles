@@ -9,7 +9,7 @@
 | `yazi`  | `.config/yazi/*.toml`                   | `~/.config/yazi/`                                |
 | `vscode`| `Library/Application Support/Code/User` | `~/Library/Application Support/Code/User/`       |
 | `nvim`  | `.config/nvim` (LazyVim)                | `~/.config/nvim`                                 |
-| `karabiner` | `.config/karabiner/karabiner.json`  | `~/.config/karabiner/karabiner.json`             |
+| `karabiner` | `.config/karabiner/` (вся папка)    | `~/.config/karabiner`                            |
 | `ccstatusline` | `.config/ccstatusline/settings.json` | `~/.config/ccstatusline/settings.json`       |
 | `git`   | `.gitconfig`                            | `~/.gitconfig`                                   |
 
@@ -23,8 +23,8 @@ git clone <repo> ~/dotfiles
 ~/dotfiles/scripts/install-vscode.sh personal
 ```
 
-`install.sh`: brew, oh-my-zsh, p10k, плагины, yazi, stow (zsh, yazi, nvim, karabiner, ccstatusline, git), затем
-`brew bundle` для `brew/Brewfile` и `brew/Brewfile.<профиль>`. Профиль запоминается в
+`install.sh`: brew, `brew bundle` для `brew/Brewfile` и `brew/Brewfile.<профиль>`, oh-my-zsh,
+p10k, плагины, stow (zsh, yazi, nvim, karabiner, ccstatusline, git). Профиль запоминается в
 `~/.zshrc.local` как `MACHINE_PROFILE`. `install-vscode.sh`: stow vscode и расширения
 из `extensions.txt` + `extensions.<профиль>.txt`.
 
@@ -37,6 +37,22 @@ stow zsh yazi vscode nvim karabiner ccstatusline git   # создать
 stow -R zsh                 # пересоздать один пакет
 stow -D yazi                # снять симлинки
 stow -n -v zsh              # пробный прогон, ничего не меняет
+```
+
+## Karabiner
+
+`~/.config/karabiner` целиком — симлинк на `karabiner/.config/karabiner/` в этом репо
+(не только `karabiner.json`). Karabiner следит за изменениями через FSEvents на
+директории `~/.config/karabiner`; если симлинкнуть только файл внутри нетронутой
+папки, эти события до него не долетают (см. [issue #597](https://github.com/pqrs-org/Karabiner-Elements/issues/597)) — поэтому симлинкуется вся папка.
+
+`automatic_backups/` в репозиторий не попадает (см. `karabiner/.gitignore`), но физически
+лежит внутри пакета, чтобы Karabiner мог продолжать туда писать через симлинк.
+
+Обычно правки в `karabiner.json` подхватываются на лету. Если нет — сработает:
+
+```bash
+./scripts/karabiner-reload.sh
 ```
 
 ## Git: имя и email
