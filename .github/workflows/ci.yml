@@ -11,7 +11,7 @@ jobs:
     # поэтому раннер именно macOS, а не ubuntu.
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install stow
         run: brew install stow
@@ -33,7 +33,7 @@ jobs:
   gitleaks:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -46,7 +46,7 @@ jobs:
     # shellcheck предустановлен на ubuntu-раннерах, ставить не нужно
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: ShellCheck
         run: shellcheck scripts/*.sh .githooks/pre-commit
