@@ -40,7 +40,20 @@ if [ -n "$PROFILE" ] && [ -f "$DOTFILES/brew/Brewfile.$PROFILE" ]; then
 fi
 
 # --------------------------------------------------------------------
-# 🐚 3. Oh My Zsh + Powerlevel10k + плагины
+# 🤖 3. Claude Code
+# --------------------------------------------------------------------
+# Нативный установщик, не brew: у Claude Code свой self-update
+# (симлинк в ~/.local/share/claude/versions/...), ставить через brew
+# означало бы два независимых бинарника и два конкурирующих апдейтера.
+if ! command -v claude &>/dev/null; then
+  echo "🤖 Installing Claude Code..."
+  curl -fsSL https://claude.ai/install.sh | bash
+else
+  echo "✅ Claude Code already installed"
+fi
+
+# --------------------------------------------------------------------
+# 🐚 4. Oh My Zsh + Powerlevel10k + плагины
 # --------------------------------------------------------------------
 echo "🐚 Installing Oh My Zsh..."
 
@@ -74,7 +87,7 @@ if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
 fi
 
 # --------------------------------------------------------------------
-# 🔗 4. Симлинки через stow
+# 🔗 5. Симлинки через stow
 # --------------------------------------------------------------------
 echo "🔗 Linking dotfiles via stow..."
 
@@ -100,7 +113,7 @@ if [ ! -f ~/.gitconfig.local ]; then
 fi
 
 # --------------------------------------------------------------------
-# 🧠 5. Сделать zsh оболочкой по умолчанию
+# 🧠 6. Сделать zsh оболочкой по умолчанию
 # --------------------------------------------------------------------
 if [[ "$SHELL" != "$(which zsh)" ]]; then
   echo "🧠 Setting zsh as default shell..."
@@ -113,7 +126,7 @@ if [ -n "$PROFILE" ] && ! grep -q '^export MACHINE_PROFILE=' ~/.zshrc.local 2>/d
 fi
 
 # --------------------------------------------------------------------
-# 🧹 6. Финал
+# 🧹 7. Финал
 # --------------------------------------------------------------------
 echo ""
 echo "✅ Installation complete!"

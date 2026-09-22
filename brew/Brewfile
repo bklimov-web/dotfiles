@@ -56,6 +56,20 @@ brew "zoxide"
 cask "karabiner-elements"
 cask "font-meslo-lg-nerd-font"
 cask "font-symbols-only-nerd-font"
+# Browser
+cask "arc"
+# Terminal emulator
+cask "iterm2"
+# Code editor
+cask "visual-studio-code"
+# Messaging app
+cask "telegram"
+# Password manager
+cask "1password"
+# Launcher / productivity tool
+cask "raycast"
+# Anthropic's official Claude desktop app
+cask "claude"
 # Plugin for AWS CLI to start and end sessions that connect to managed instances
 cask "session-manager-plugin"
 go "github.com/pressly/goose/v3/cmd/goose"

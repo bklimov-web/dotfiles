@@ -49,8 +49,41 @@ defaults write com.apple.dock tilesize -int 33
 # Не показывать недавние приложения — только закреплённые
 defaults write com.apple.dock show-recents -bool false
 
-echo "🔁 Restarting Finder and Dock..."
+# --------------------------------------------------------------------
+# Spotlight / Raycast
+# --------------------------------------------------------------------
+# Выключить стандартный Cmd+Space у Spotlight (ключ 64 = "Show Spotlight
+# search" в com.apple.symbolichotkeys), чтобы combo было свободно для Raycast.
+# 65 ("Show Finder search window", Cmd+Option+Space) оставляем как есть.
+#
+# defaults write/-dict-add тут не годится: он бы заменил весь узел "64"
+# целиком, включая вложенный value с параметрами комбинации. PlistBuddy
+# позволяет пересобрать узел точечно и одинаково и для новой машины
+# (ключа 64 ещё нет), и для уже тронутой (ключ есть) — Delete молча
+# игнорирует отсутствие ключа, Add затем создаёт его заново.
+HOTKEYS_PLIST="$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
+/usr/libexec/PlistBuddy -c "Delete :AppleSymbolicHotKeys:64" "$HOTKEYS_PLIST" 2>/dev/null
+/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64 dict" "$HOTKEYS_PLIST"
+/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:enabled bool false" "$HOTKEYS_PLIST"
+/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:value dict" "$HOTKEYS_PLIST"
+/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:value:type string standard" "$HOTKEYS_PLIST"
+/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:value:parameters array" "$HOTKEYS_PLIST"
+/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:value:parameters:0 integer 65535" "$HOTKEYS_PLIST"
+/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:value:parameters:1 integer 49" "$HOTKEYS_PLIST"
+/usr/libexec/PlistBuddy -c "Add :AppleSymbolicHotKeys:64:value:parameters:2 integer 1048576" "$HOTKEYS_PLIST"
+
+# Raycast: сам открывается по Cmd+Space (49 — код клавиши Space)
+if [ -d /Applications/Raycast.app ]; then
+  defaults write com.raycast.macos raycastGlobalHotkey -string "Command-49"
+fi
+
+echo "🔁 Restarting Finder, Dock, SystemUIServer и сбрасываю кеш preferences..."
 killall Finder
 killall Dock
+killall SystemUIServer 2>/dev/null || true
+# PlistBuddy пишет в файл напрямую, мимо кеша cfprefsd — без этого
+# правка Spotlight может не примениться до следующего логина
+killall cfprefsd 2>/dev/null || true
 
 echo "✅ Done."
+echo "ℹ️  Если Raycast уже был открыт, перезапусти его, чтобы hotkey подхватился."

@@ -24,7 +24,7 @@ jobs:
           # с пакетом git. Подставляем пустой $HOME, а не реальный.
           export HOME="$RUNNER_TEMP/fake-home"
           mkdir -p "$HOME"
-          # Список вручную, а не автопоиск папок: brew/ и scripts/ лежат в репо
+          # Список вручную, а не автопоиск папок: brew/, scripts/, raycast/ лежат в репо
           # рядом с пакетами, но сами пакетами не являются (см. install.sh).
           packages=(zsh yazi vscode nvim karabiner ccstatusline git)
           # -n — dry-run, ничего не линкует; падает при конфликте или битом пути
