@@ -19,6 +19,11 @@ jobs:
       - name: Dry-run stow for every package
         run: |
           cd "$GITHUB_WORKSPACE"
+          # Симулируем чистую машину: у раннера macos-latest уже есть свой
+          # ~/.gitconfig (его создаёт actions/checkout), и он конфликтует
+          # с пакетом git. Подставляем пустой $HOME, а не реальный.
+          export HOME="$RUNNER_TEMP/fake-home"
+          mkdir -p "$HOME"
           # Список вручную, а не автопоиск папок: brew/ и scripts/ лежат в репо
           # рядом с пакетами, но сами пакетами не являются (см. install.sh).
           packages=(zsh yazi vscode nvim karabiner ccstatusline git)
