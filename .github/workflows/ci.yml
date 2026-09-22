@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  stow-check:
+    # stow-пакеты содержат macOS-специфичные пути (Library/Application Support/...),
+    # поэтому раннер именно macOS, а не ubuntu.
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install stow
+        run: brew install stow
+
+      - name: Dry-run stow for every package
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          # Список вручную, а не автопоиск папок: brew/ и scripts/ лежат в репо
+          # рядом с пакетами, но сами пакетами не являются (см. install.sh).
+          packages=(zsh yazi vscode nvim karabiner ccstatusline git)
+          # -n — dry-run, ничего не линкует; падает при конфликте или битом пути
+          stow -n -v "${packages[@]}"
+
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Scan for secrets
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
