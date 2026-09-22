@@ -1,5 +1,7 @@
 # dotfiles
 
+[![CI](https://github.com/bklimov-web/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/bklimov-web/dotfiles/actions/workflows/ci.yml)
+
 Конфиги, которые линкуются в `$HOME` через [GNU Stow](https://www.gnu.org/software/stow/).
 Каждая папка верхнего уровня — отдельный stow-пакет, внутри неё путь повторяет путь от `$HOME`.
 
@@ -38,6 +40,18 @@ stow -R zsh                 # пересоздать один пакет
 stow -D yazi                # снять симлинки
 stow -n -v zsh              # пробный прогон, ничего не меняет
 ```
+
+## CI
+
+`.github/workflows/ci.yml` на каждый push и PR:
+
+- **stow-check** — `stow -n -v` для всех пакетов на пустом `$HOME` (macOS-раннер). Ловит
+  конфликты и битые пути до того, как это всплывёт на реальной машине.
+- **gitleaks** — секреты по всей истории репозитория, не только по staged-изменениям,
+  в отличие от локального `.githooks/pre-commit`.
+
+Список пакетов в `stow-check` прописан вручную и должен совпадать со списком в
+`scripts/install.sh` — при добавлении нового пакета обнови оба места.
 
 ## Karabiner
 
