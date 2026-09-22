@@ -68,8 +68,8 @@ if command -v code &>/dev/null; then
   [ -n "$PROFILE" ] && [ -f "$DOTFILES/vscode/extensions.$PROFILE.txt" ] && mine+=("$DOTFILES/vscode/extensions.$PROFILE.txt")
 
   out="$(comm -23 \
-    <(code --list-extensions | tr 'A-Z' 'a-z' | sort) \
-    <(cat "${mine[@]}" | grep -v -e '^#' -e '^$' | tr 'A-Z' 'a-z' | sort -u))"
+    <(code --list-extensions | tr '[:upper:]' '[:lower:]' | sort) \
+    <(cat "${mine[@]}" | grep -v -e '^#' -e '^$' | tr '[:upper:]' '[:lower:]' | sort -u))"
 
   if [ -z "$out" ]; then
     echo "  — всё записано"

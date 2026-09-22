@@ -41,3 +41,12 @@ jobs:
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  shellcheck:
+    # shellcheck предустановлен на ubuntu-раннерах, ставить не нужно
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ShellCheck
+        run: shellcheck scripts/*.sh .githooks/pre-commit
