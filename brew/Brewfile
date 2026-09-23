@@ -72,6 +72,8 @@ cask "raycast"
 cask "claude"
 # Plugin for AWS CLI to start and end sessions that connect to managed instances
 cask "session-manager-plugin"
+# Screenshot tool
+cask "shottr"
 go "github.com/pressly/goose/v3/cmd/goose"
 go "golang.org/x/tools/gopls"
 go "github.com/sqlc-dev/sqlc/cmd/sqlc"
